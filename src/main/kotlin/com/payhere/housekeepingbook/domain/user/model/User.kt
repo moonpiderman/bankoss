@@ -19,4 +19,7 @@ class User(
 
     @JsonIgnore
     val authorities: String = "User",
-): BaseEntity()
+
+    @field:NotBlank
+    var accessToken: String,
+) : BaseEntity()
