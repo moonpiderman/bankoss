@@ -24,7 +24,7 @@ class UserController(
         response: HttpServletResponse,
     ): ResponseEntity<UserDto.Response> {
         val user = userService.signup(signupRequest)
-        response.addHeader("Authentication", jwtTokenProvider.generateToken(user.email))
+        response.addHeader("Authentication", user.accessToken)
         return ResponseEntity(UserDto.Response(user), HttpStatus.CREATED)
     }
 }
