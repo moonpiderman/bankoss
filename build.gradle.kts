@@ -8,6 +8,13 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.31"
 	kotlin("plugin.allopen") version "1.3.71"
 	kotlin("plugin.noarg") version "1.3.71"
+
+    // https://github.com/jlleitschuh/ktlint-gradle
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
+
+    // plugin for IDEA specific helper tasks
+    // https://github.com/jlleitschuh/ktlint-gradle#additional-helper-tasks
+    id("org.jlleitschuh.gradle.ktlint-idea") version "10.2.0"
 }
 
 allOpen {
@@ -39,6 +46,15 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 
 	implementation("org.hibernate.validator:hibernate-validator")
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    additionalEditorconfigFile.set(file(".editorconfig"))
+
+    filter {
+        exclude("./.gradle/**")
+        include("**/kotlin/**")
+    }
 }
 
 tasks.withType<KotlinCompile> {
