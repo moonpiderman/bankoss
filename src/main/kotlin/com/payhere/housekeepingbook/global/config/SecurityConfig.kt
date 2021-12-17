@@ -57,5 +57,7 @@ class SecurityConfig(
             .antMatchers("/api/user/signin/").permitAll()
             .antMatchers(HttpMethod.POST, "/api/user/signup/").anonymous()
             .anyRequest().authenticated()
+            .and()
+            .logout()
     }
 }
