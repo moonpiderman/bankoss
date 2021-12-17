@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: local
+app:
+  jwt:
+    jwt-secret-key: house
+    jwt-expiration-in-ms: 10800000
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/housekeepingbook?serverTimezone=UTC
+    username: housekeepingbook
+    password: housekeepingbook
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
