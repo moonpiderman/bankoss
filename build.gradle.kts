@@ -6,6 +6,16 @@ plugins {
 	kotlin("jvm") version "1.5.31"
 	kotlin("plugin.spring") version "1.5.31"
 	kotlin("plugin.jpa") version "1.5.31"
+	kotlin("plugin.allopen") version "1.3.71"
+	kotlin("plugin.noarg") version "1.3.71"
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+}
+
+noArg {
+	annotation("javax.persistence.Entity")
 }
 
 group = "com.payhere"
