@@ -10,20 +10,6 @@ class BookDto {
         val id: Long,
         val title: String,
         val memo: String,
-        val balance: Float
-    ) {
-        constructor(book: Book) : this(
-            id = book.id,
-            title = book.title,
-            memo = book.memo,
-            balance = book.balance,
-        )
-    }
-
-    data class BookTotalResponse(
-        val id: Long,
-        val title: String,
-        val memo: String,
         val balance: Float,
         val logs: List<BookLogDto.LogResponse>,
     ) {
@@ -32,10 +18,7 @@ class BookDto {
             title = book.title,
             memo = book.memo,
             balance = book.balance,
-            logs = book.logs.map {
-                it ->
-                BookLogDto.LogResponse(bookLogRepository.findByBook(it.id))
-            }
+            logs = book.logs.map { BookLogDto.LogResponse(bookLogRepository.findByBook(it.book!!)) }
         )
     }
 

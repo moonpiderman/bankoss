@@ -1,10 +1,12 @@
 package com.payhere.housekeepingbook.domain.book.service
 
 import com.payhere.housekeepingbook.domain.book.dto.BookDto
+import com.payhere.housekeepingbook.domain.book.exception.CannotFindBookException
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.book.repository.BookRepository
 import com.payhere.housekeepingbook.domain.user.model.User
 import com.payhere.housekeepingbook.domain.user.repository.UserRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -21,5 +23,9 @@ class BookService(
         newBook.user = user
         userRepository.save(user)
         return newBook
+    }
+
+    fun getThisBook(id: Long): Book {
+        return bookRepository.findByIdOrNull(id) ?: throw CannotFindBookException()
     }
 }

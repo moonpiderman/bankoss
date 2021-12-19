@@ -30,4 +30,8 @@ class Book(
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var logs: MutableList<BookLog> = mutableListOf(),
 
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    fun addLog(bookLog: BookLog) {
+        logs.add(bookLog)
+    }
+}
