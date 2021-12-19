@@ -1,3 +1,25 @@
 package com.payhere.housekeepingbook.domain.book.service
 
-class BookService
+import com.payhere.housekeepingbook.domain.book.dto.BookDto
+import com.payhere.housekeepingbook.domain.book.model.Book
+import com.payhere.housekeepingbook.domain.book.repository.BookRepository
+import com.payhere.housekeepingbook.domain.user.model.User
+import com.payhere.housekeepingbook.domain.user.repository.UserRepository
+import org.springframework.stereotype.Service
+
+@Service
+class BookService(
+    private val bookRepository: BookRepository,
+    private val userRepository: UserRepository,
+) {
+    fun createBook(user: User, createRequest: BookDto.CreateRequest): Book {
+        val title = createRequest.title
+        val memo = createRequest.memo
+
+        val newBook = bookRepository.save(Book(title = title, memo = memo))
+        user.addBook(newBook)
+        newBook.user = user
+        userRepository.save(user)
+        return newBook
+    }
+}
