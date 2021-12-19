@@ -1,11 +1,13 @@
 package com.payhere.housekeepingbook.domain.book.model
 
+import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.model.BaseTimeEntity
 import com.payhere.housekeepingbook.domain.user.model.User
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.validation.constraints.NotBlank
 
@@ -23,5 +25,8 @@ class Book(
 
     @field:NotBlank
     var balance: Float = 0.toFloat(),
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var logs: MutableList<BookLog> = mutableListOf(),
 
 ) : BaseTimeEntity()
