@@ -1,13 +1,16 @@
 package com.payhere.housekeepingbook.domain.user.api
 
 import com.payhere.housekeepingbook.domain.user.dto.UserDto
+import com.payhere.housekeepingbook.domain.user.model.User
 import com.payhere.housekeepingbook.domain.user.service.UserService
+import com.payhere.housekeepingbook.global.auth.CurrentUser
 import com.payhere.housekeepingbook.global.auth.jwt.JwtTokenProvider
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -40,5 +43,12 @@ class UserController(
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         if (auth != null) SecurityContextLogoutHandler().logout(request, response, auth)
         return ResponseEntity(HttpStatus.OK)
+    }
+
+    @GetMapping("/books/")
+    fun viewBooks(
+        @CurrentUser user: User,
+    ): ResponseEntity<UserDto.UserBooksResponse> {
+        return ResponseEntity(UserDto.UserBooksResponse(user), HttpStatus.OK)
     }
 }
