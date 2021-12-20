@@ -44,8 +44,8 @@ class BookLogDto {
         val memo: String? = null,
     )
 
-    data class DeleteLogRequest(
+    data class RestoreLogRequest(
         @field:NotBlank
-        val isActive: String,
+        val isActive: Boolean,
     )
 }

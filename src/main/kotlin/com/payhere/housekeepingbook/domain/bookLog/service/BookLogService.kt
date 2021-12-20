@@ -3,8 +3,9 @@ package com.payhere.housekeepingbook.domain.bookLog.service
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.book.repository.BookRepository
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
-import com.payhere.housekeepingbook.domain.bookLog.exception.AlreadyDeletedLog
+import com.payhere.housekeepingbook.domain.bookLog.exception.AlreadyDeletedLogException
 import com.payhere.housekeepingbook.domain.bookLog.exception.CannotFindBookLogException
+import com.payhere.housekeepingbook.domain.bookLog.exception.DidNotDeleteLogException
 import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
 import org.springframework.data.repository.findByIdOrNull
@@ -43,8 +44,19 @@ class BookLogService(
     }
 
     fun deleteLog(log: BookLog) {
-        if (!log.isActive) throw AlreadyDeletedLog()
+        if (!log.isActive) throw AlreadyDeletedLogException()
         log.isActive = false
+        bookLogRepository.save(log)
+    }
+
+    // fun restoreLog(restoreLogRequest: BookLogDto.RestoreLogRequest, log: BookLog) {
+    //     if (log.isActive) throw DidNotDeleteLogException()
+    //     log.isActive = restoreLogRequest.isActive
+    //     bookLogRepository.save(log)
+    // }
+    fun restoreLog(log: BookLog) {
+        if (log.isActive) throw DidNotDeleteLogException()
+        log.isActive = true
         bookLogRepository.save(log)
     }
 
