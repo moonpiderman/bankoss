@@ -50,7 +50,7 @@ class BookController(
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
         @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
-    ): ResponseEntity<BookDto.BookResponse> { // 여기에 로그만 보여줄까? 아니면 북 전체를 보여줄까?
+    ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.editLog(modifyLogRequest, thisLog)
