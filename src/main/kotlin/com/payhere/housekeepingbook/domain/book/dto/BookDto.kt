@@ -10,7 +10,7 @@ class BookDto {
         val id: Long,
         val title: String,
         val memo: String,
-        val balance: Float,
+        val balance: Int,
         val logs: List<BookLogDto.LogResponse>,
     ) {
         constructor(book: Book, bookLogRepository: BookLogRepository) : this(

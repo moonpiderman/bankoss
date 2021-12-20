@@ -25,7 +25,7 @@ class Book(
     var memo: String = "",
 
     @Column
-    var balance: Float = 0.toFloat(),
+    var balance: Int = 0,
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var logs: MutableList<BookLog> = mutableListOf(),
