@@ -18,7 +18,9 @@ class BookDto {
             title = book.title,
             memo = book.memo,
             balance = book.balance,
-            logs = book.logs.map { BookLogDto.LogResponse(bookLogRepository.findByBook(it.book!!)) }
+            logs = book.logs.map {
+                BookLogDto.LogResponse(it)
+            },
         )
     }
 

@@ -21,7 +21,7 @@ class BookLogDto {
 
     data class AddLogRequest(
         @field:NotBlank
-        val title: String,
+        val category: String,
 
         @field:NotNull
         val moneyType: Boolean,

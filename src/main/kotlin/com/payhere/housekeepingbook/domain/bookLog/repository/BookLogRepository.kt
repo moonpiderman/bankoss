@@ -5,5 +5,5 @@ import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface BookLogRepository : JpaRepository<BookLog, Long?> {
-    fun findByBook(book: Book): BookLog
+    fun findBookLogByBookOrderByCreatedAt(book: Book): BookLog
 }

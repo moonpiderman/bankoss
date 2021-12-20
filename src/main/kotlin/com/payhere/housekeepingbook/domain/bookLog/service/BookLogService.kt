@@ -14,14 +14,14 @@ class BookLogService(
 ) {
     fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book) {
         if (book != null) {
-            val title = addLogRequest.title
+            val category = addLogRequest.category
             val moneyType = addLogRequest.moneyType
             val money = addLogRequest.money
             val memo = addLogRequest.memo
 
             val newLog = bookLogRepository.save(
                 BookLog(
-                    title = title, moneyType = moneyType, money = money, memo = memo
+                    category = category, moneyType = moneyType, money = money, memo = memo
                 )
             )
             book.addLog(newLog)
