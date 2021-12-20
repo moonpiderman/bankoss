@@ -11,6 +11,7 @@ import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import kotlin.math.abs
 
 @Service
 class BookLogService(
@@ -37,12 +38,23 @@ class BookLogService(
         }
     }
 
-    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog) {
+    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book) {
+        var type: Boolean = log.moneyType
+        var moneyForBal: Int = log.money
         if (modifyLogRequest.category != null) log.category = modifyLogRequest.category
-        if (modifyLogRequest.moneyType != null) log.moneyType = modifyLogRequest.moneyType
-        if (modifyLogRequest.money != null) log.money = modifyLogRequest.money
+        if (modifyLogRequest.moneyType != null) {
+            type = !(modifyLogRequest.moneyType xor log.moneyType)
+            log.moneyType = modifyLogRequest.moneyType
+        }
+        if (modifyLogRequest.money != null) {
+            if (type) moneyForBal += modifyLogRequest.money
+            else moneyForBal -= modifyLogRequest.money
+            log.money = modifyLogRequest.money
+        }
         if (modifyLogRequest.memo != null) log.memo = modifyLogRequest.memo
 
+        val newBalance = bookService.calculateBalance(book.balance, type, abs(moneyForBal))
+        book.balance = newBalance
         bookLogRepository.save(log)
     }
 

@@ -54,7 +54,7 @@ class BookController(
     ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
-        bookLogService.editLog(modifyLogRequest, thisLog)
+        bookLogService.editLog(modifyLogRequest, thisLog, thisBook)
         return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 
