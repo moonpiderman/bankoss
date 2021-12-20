@@ -31,4 +31,14 @@ class BookLogDto {
 
         val memo: String,
     )
+
+    data class ModifyLogRequest(
+        val category: String? = null,
+
+        val moneyType: Boolean? = null,
+
+        val money: Float? = null,
+
+        val memo: String? = null,
+    )
 }

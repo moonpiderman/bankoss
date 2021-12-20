@@ -3,8 +3,10 @@ package com.payhere.housekeepingbook.domain.bookLog.service
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.book.repository.BookRepository
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
+import com.payhere.housekeepingbook.domain.bookLog.exception.CannotFindBookLogException
 import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -28,5 +30,18 @@ class BookLogService(
             newLog.book = book
             bookRepository.save(book)
         }
+    }
+
+    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog) {
+        if (modifyLogRequest.category != null) log.category = modifyLogRequest.category
+        if (modifyLogRequest.moneyType != null) log.moneyType = modifyLogRequest.moneyType
+        if (modifyLogRequest.money != null) log.money = modifyLogRequest.money
+        if (modifyLogRequest.memo != null) log.memo = modifyLogRequest.memo
+
+        bookLogRepository.save(log)
+    }
+
+    fun getThisLog(id: Long): BookLog {
+        return bookLogRepository.findByIdOrNull(id) ?: throw CannotFindBookLogException()
     }
 }
