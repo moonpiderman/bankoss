@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -32,14 +33,27 @@ class BookController(
         return ResponseEntity(BookDto.BookResponse(newBook, bookLogRepository), HttpStatus.CREATED)
     }
 
-    @PostMapping("/{id}/log/")
+    @PostMapping("/{bookId}/log/")
     fun addLog(
-        @PathVariable("id") id: Long,
+        @PathVariable("bookId") bookId: Long,
         @CurrentUser user: User,
         @Valid @RequestBody addLogRequest: BookLogDto.AddLogRequest
     ): ResponseEntity<BookDto.BookResponse> {
-        val thisBook = bookService.getThisBook(id)
+        val thisBook = bookService.getThisBook(bookId)
         bookLogService.addLog(addLogRequest, thisBook)
         return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.CREATED)
+    }
+
+    @PutMapping("/{bookId}/{logId}/")
+    fun modifyLog(
+        @PathVariable("bookId") bookId: Long,
+        @PathVariable("logId") logId: Long,
+        @CurrentUser user: User,
+        @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
+    ): ResponseEntity<BookDto.BookResponse> { // 여기에 로그만 보여줄까? 아니면 북 전체를 보여줄까?
+        val thisBook = bookService.getThisBook(bookId)
+        val thisLog = bookLogService.getThisLog(logId)
+        bookLogService.editLog(modifyLogRequest, thisLog)
+        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
     }
 }
