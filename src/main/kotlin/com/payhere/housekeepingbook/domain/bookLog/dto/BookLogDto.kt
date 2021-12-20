@@ -6,11 +6,13 @@ import javax.validation.constraints.NotNull
 
 class BookLogDto {
     data class LogResponse(
+        val category: String,
         val moneyType: Boolean,
         val money: Float,
         val memo: String,
     ) {
         constructor(bookLog: BookLog) : this(
+            category = bookLog.category,
             moneyType = bookLog.moneyType,
             money = bookLog.money,
             memo = bookLog.memo,

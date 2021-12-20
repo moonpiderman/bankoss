@@ -17,7 +17,7 @@ class BookLog(
     var book: Book? = null,
 
     @field:NotBlank
-    var title: String,
+    var category: String,
 
     // true : 입금, false : 소비
     @field:NotNull
