@@ -75,11 +75,9 @@ class BookController(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
-        // @Valid @RequestBody restoreLogRequest: BookLogDto.RestoreLogRequest,
     ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
-        // bookLogService.restoreLog(restoreLogRequest, thisLog)
         bookLogService.restoreLog(thisLog)
         return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
     }
