@@ -1,5 +1,6 @@
 package com.payhere.housekeepingbook.domain.user.dto
 
+import com.payhere.housekeepingbook.domain.book.dto.BookDto
 import com.payhere.housekeepingbook.domain.user.model.User
 import javax.validation.constraints.NotBlank
 
@@ -8,9 +9,21 @@ class UserDto {
         val id: Long,
         val email: String,
     ) {
-        constructor(user: User): this(
+        constructor(user: User) : this(
             id = user.id,
             email = user.email
+        )
+    }
+
+    data class UserBooksResponse(
+        val id: Long,
+        val email: String,
+        val books: List<BookDto.BookSummaryResponse>
+    ) {
+        constructor(user: User) : this(
+            id = user.id,
+            email = user.email,
+            books = user.books.map { BookDto.BookSummaryResponse(it) },
         )
     }
 

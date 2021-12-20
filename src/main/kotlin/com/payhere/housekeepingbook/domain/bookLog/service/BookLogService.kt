@@ -2,6 +2,7 @@ package com.payhere.housekeepingbook.domain.bookLog.service
 
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.book.repository.BookRepository
+import com.payhere.housekeepingbook.domain.book.service.BookService
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
 import com.payhere.housekeepingbook.domain.bookLog.exception.AlreadyDeletedLogException
 import com.payhere.housekeepingbook.domain.bookLog.exception.CannotFindBookLogException
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service
 class BookLogService(
     private val bookLogRepository: BookLogRepository,
     private val bookRepository: BookRepository,
+    private val bookService: BookService,
 ) {
     fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book) {
         if (book != null) {
@@ -30,6 +32,7 @@ class BookLogService(
             )
             book.addLog(newLog)
             newLog.book = book
+            book.balance = bookService.calculateBalance(book.balance, moneyType, money)
             bookRepository.save(book)
         }
     }
@@ -49,11 +52,6 @@ class BookLogService(
         bookLogRepository.save(log)
     }
 
-    // fun restoreLog(restoreLogRequest: BookLogDto.RestoreLogRequest, log: BookLog) {
-    //     if (log.isActive) throw DidNotDeleteLogException()
-    //     log.isActive = restoreLogRequest.isActive
-    //     bookLogRepository.save(log)
-    // }
     fun restoreLog(log: BookLog) {
         if (log.isActive) throw DidNotDeleteLogException()
         log.isActive = true

@@ -8,7 +8,7 @@ class BookLogDto {
     data class LogResponse(
         val category: String,
         val moneyType: Boolean,
-        val money: Float,
+        val money: Int,
         val memo: String,
         val isActive: Boolean,
     ) {
@@ -29,7 +29,7 @@ class BookLogDto {
         val moneyType: Boolean,
 
         @field:NotNull
-        val money: Float,
+        val money: Int,
 
         val memo: String,
     )
@@ -39,7 +39,7 @@ class BookLogDto {
 
         val moneyType: Boolean? = null,
 
-        val money: Float? = null,
+        val money: Int? = null,
 
         val memo: String? = null,
     )

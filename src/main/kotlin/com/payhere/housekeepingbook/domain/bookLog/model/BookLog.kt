@@ -24,7 +24,7 @@ class BookLog(
     var moneyType: Boolean = false,
 
     @field:NotNull
-    var money: Float = 0.toFloat(),
+    var money: Int = 0,
 
     @field:NotNull
     var memo: String = "",

@@ -2,7 +2,6 @@ package com.payhere.housekeepingbook.domain.book.dto
 
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
-import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
 import javax.validation.constraints.NotBlank
 
 class BookDto {
@@ -10,10 +9,10 @@ class BookDto {
         val id: Long,
         val title: String,
         val memo: String,
-        val balance: Float,
+        val balance: Int,
         val logs: List<BookLogDto.LogResponse>,
     ) {
-        constructor(book: Book, bookLogRepository: BookLogRepository) : this(
+        constructor(book: Book) : this(
             id = book.id,
             title = book.title,
             memo = book.memo,
@@ -21,6 +20,20 @@ class BookDto {
             logs = book.logs.map {
                 BookLogDto.LogResponse(it)
             },
+        )
+    }
+
+    data class BookSummaryResponse(
+        val id: Long,
+        val title: String,
+        val balance: Int,
+        val memo: String,
+    ) {
+        constructor(book: Book) : this(
+            id = book.id,
+            title = book.title,
+            balance = book.balance,
+            memo = book.memo,
         )
     }
 

@@ -25,6 +25,13 @@ class BookService(
         return newBook
     }
 
+    fun calculateBalance(bookBalance: Int, moneyType: Boolean, money: Int): Int {
+        val newBalance: Int
+        if (moneyType) newBalance = bookBalance + money
+        else newBalance = bookBalance - money
+        return newBalance
+    }
+
     fun getThisBook(id: Long): Book {
         return bookRepository.findByIdOrNull(id) ?: throw CannotFindBookException()
     }

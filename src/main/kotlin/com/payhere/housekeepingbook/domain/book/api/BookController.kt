@@ -31,7 +31,7 @@ class BookController(
         @Valid @RequestBody createRequest: BookDto.CreateRequest
     ): ResponseEntity<BookDto.BookResponse> {
         val newBook = bookService.createBook(user, createRequest)
-        return ResponseEntity(BookDto.BookResponse(newBook, bookLogRepository), HttpStatus.CREATED)
+        return ResponseEntity(BookDto.BookResponse(newBook), HttpStatus.CREATED)
     }
 
     @PostMapping("/{bookId}/log/")
@@ -42,7 +42,7 @@ class BookController(
     ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         bookLogService.addLog(addLogRequest, thisBook)
-        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.CREATED)
+        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.CREATED)
     }
 
     @PutMapping("/{bookId}/{logId}/")
@@ -55,7 +55,7 @@ class BookController(
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.editLog(modifyLogRequest, thisLog)
-        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
+        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 
     @DeleteMapping("/{bookId}/{logId}/")
@@ -67,7 +67,7 @@ class BookController(
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.deleteLog(thisLog)
-        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
+        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 
     @PutMapping("/{bookId}/{logId}/restore/")
@@ -75,12 +75,10 @@ class BookController(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
-        // @Valid @RequestBody restoreLogRequest: BookLogDto.RestoreLogRequest,
     ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
-        // bookLogService.restoreLog(restoreLogRequest, thisLog)
         bookLogService.restoreLog(thisLog)
-        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
+        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 }
