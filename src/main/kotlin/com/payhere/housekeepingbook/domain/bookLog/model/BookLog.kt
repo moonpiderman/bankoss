@@ -8,23 +8,24 @@ import javax.persistence.FetchType
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "book_log")
 class BookLog(
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val book: Book,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = true)
+    var book: Book? = null,
 
     @field:NotBlank
-    var title: String,
+    var category: String,
 
     // true : 입금, false : 소비
-    @field:NotBlank
+    @field:NotNull
     var moneyType: Boolean = false,
 
-    @field:NotBlank
+    @field:NotNull
     var money: Float = 0.toFloat(),
 
-    @field:NotBlank
+    @field:NotNull
     var memo: String = "",
 ) : BaseTimeEntity()

@@ -4,6 +4,7 @@ import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.model.BaseTimeEntity
 import com.payhere.housekeepingbook.domain.user.model.User
 import javax.persistence.CascadeType
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToOne
@@ -15,18 +16,22 @@ import javax.validation.constraints.NotBlank
 @Table(name = "book")
 class Book(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val user: User,
+    var user: User? = null,
 
     @field:NotBlank
     var title: String = "",
 
     @field:NotBlank
-    var memo: String? = null,
+    var memo: String = "",
 
-    @field:NotBlank
+    @Column
     var balance: Float = 0.toFloat(),
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var logs: MutableList<BookLog> = mutableListOf(),
 
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    fun addLog(bookLog: BookLog) {
+        logs.add(bookLog)
+    }
+}
