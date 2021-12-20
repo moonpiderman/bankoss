@@ -58,15 +58,19 @@ class BookLogService(
         bookLogRepository.save(log)
     }
 
-    fun deleteLog(log: BookLog) {
+    fun deleteLog(log: BookLog, book: Book) {
         if (!log.isActive) throw AlreadyDeletedLogException()
         log.isActive = false
+        val newBalance = bookService.calculateBalance(book.balance, !log.moneyType, log.money)
+        book.balance = newBalance
         bookLogRepository.save(log)
     }
 
-    fun restoreLog(log: BookLog) {
+    fun restoreLog(log: BookLog, book: Book) {
         if (log.isActive) throw DidNotDeleteLogException()
         log.isActive = true
+        val newBalance = bookService.calculateBalance(book.balance, log.moneyType, log.money)
+        book.balance = newBalance
         bookLogRepository.save(log)
     }
 
