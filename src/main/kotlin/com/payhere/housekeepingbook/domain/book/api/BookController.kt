@@ -9,6 +9,7 @@ import com.payhere.housekeepingbook.domain.user.model.User
 import com.payhere.housekeepingbook.global.auth.CurrentUser
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -50,10 +51,22 @@ class BookController(
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
         @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
-    ): ResponseEntity<BookDto.BookResponse> { // 여기에 로그만 보여줄까? 아니면 북 전체를 보여줄까?
+    ): ResponseEntity<BookDto.BookResponse> {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.editLog(modifyLogRequest, thisLog)
+        return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
+    }
+
+    @DeleteMapping("/{bookId}/{logId}/")
+    fun deleteLog(
+        @PathVariable("bookId") bookId: Long,
+        @PathVariable("logId") logId: Long,
+        @CurrentUser user: User,
+    ): ResponseEntity<BookDto.BookResponse> {
+        val thisBook = bookService.getThisBook(bookId)
+        val thisLog = bookLogService.getThisLog(logId)
+        bookLogService.deleteLog(thisLog)
         return ResponseEntity(BookDto.BookResponse(thisBook, bookLogRepository), HttpStatus.OK)
     }
 }

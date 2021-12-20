@@ -10,12 +10,14 @@ class BookLogDto {
         val moneyType: Boolean,
         val money: Float,
         val memo: String,
+        val isActive: Boolean,
     ) {
         constructor(bookLog: BookLog) : this(
             category = bookLog.category,
             moneyType = bookLog.moneyType,
             money = bookLog.money,
             memo = bookLog.memo,
+            isActive = bookLog.isActive,
         )
     }
 
@@ -40,5 +42,10 @@ class BookLogDto {
         val money: Float? = null,
 
         val memo: String? = null,
+    )
+
+    data class DeleteLogRequest(
+        @field:NotBlank
+        val isActive: String,
     )
 }

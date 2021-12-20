@@ -28,4 +28,7 @@ class BookLog(
 
     @field:NotNull
     var memo: String = "",
+
+    @field:NotNull
+    var isActive: Boolean = true,
 ) : BaseTimeEntity()
