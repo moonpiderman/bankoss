@@ -3,6 +3,7 @@ package com.payhere.housekeepingbook.domain.bookLog.service
 import com.payhere.housekeepingbook.domain.book.model.Book
 import com.payhere.housekeepingbook.domain.book.repository.BookRepository
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
+import com.payhere.housekeepingbook.domain.bookLog.exception.AlreadyDeletedLog
 import com.payhere.housekeepingbook.domain.bookLog.exception.CannotFindBookLogException
 import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
 import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
@@ -38,6 +39,12 @@ class BookLogService(
         if (modifyLogRequest.money != null) log.money = modifyLogRequest.money
         if (modifyLogRequest.memo != null) log.memo = modifyLogRequest.memo
 
+        bookLogRepository.save(log)
+    }
+
+    fun deleteLog(log: BookLog) {
+        if (!log.isActive) throw AlreadyDeletedLog()
+        log.isActive = false
         bookLogRepository.save(log)
     }
 
