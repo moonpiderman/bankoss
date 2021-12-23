@@ -30,5 +30,5 @@ class BookLog(
     var memo: String = "",
 
     @field:NotNull
-    var isActive: Boolean = true,
+    var isDeleted: Boolean = true,
 ) : BaseTimeEntity()
