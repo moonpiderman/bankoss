@@ -17,7 +17,7 @@ class BookLogDto {
             moneyType = bookLog.moneyType,
             money = bookLog.money,
             memo = bookLog.memo,
-            isActive = bookLog.isActive,
+            isActive = bookLog.isDeleted,
         )
     }
 
