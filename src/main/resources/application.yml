@@ -11,7 +11,7 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:mysql://localhost:3306/housekeepingbook?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/housekeepingbook
     username: housekeepingbook
     password: housekeepingbook
     driver-class-name: com.mysql.cj.jdbc.Driver
