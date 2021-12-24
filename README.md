@@ -51,7 +51,8 @@ $ java -jar -Dspring.profiles.active=local build/libs/housekeepingbook-0.0.1-SNA
 ```
 
 ### 📚 Database Scheme
-![image](https://user-images.githubusercontent.com/70942197/147304049-4312822c-e2a5-4107-8876-3b77704f8105.png)
+![image](![image](https://user-images.githubusercontent.com/70942197/147306280-9ccd8465-4d50-42c3-829b-1b990ddd20eb.png)
+
 
 ### 📄 구현 요구 사항
 1. **(완료)** ~~고객은 이메일과 비밀번호 입력을 통해서 회원 가입을 할 수 있습니다.~~
