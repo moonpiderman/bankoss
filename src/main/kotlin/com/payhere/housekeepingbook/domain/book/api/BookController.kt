@@ -3,7 +3,6 @@ package com.payhere.housekeepingbook.domain.book.api
 import com.payhere.housekeepingbook.domain.book.dto.BookDto
 import com.payhere.housekeepingbook.domain.book.service.BookService
 import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
-import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
 import com.payhere.housekeepingbook.domain.bookLog.service.BookLogService
 import com.payhere.housekeepingbook.domain.user.model.User
 import com.payhere.housekeepingbook.global.auth.CurrentUser
@@ -23,7 +22,6 @@ import javax.validation.Valid
 class BookController(
     private val bookService: BookService,
     private val bookLogService: BookLogService,
-    private val bookLogRepository: BookLogRepository,
 ) {
     @PostMapping("/")
     fun createBook(
