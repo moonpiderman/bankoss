@@ -45,7 +45,7 @@ class UserController(
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @GetMapping("/books/")
+    @GetMapping("/me/")
     fun viewBooks(
         @CurrentUser user: User,
     ): ResponseEntity<UserDto.UserBooksResponse> {

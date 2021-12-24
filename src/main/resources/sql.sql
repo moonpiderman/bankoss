@@ -18,7 +18,7 @@ create table 'book_log' (
 	'created_at' datetime,
 	'updated_at' datetime,
 	'category' varchar(255),
-	'is_active' bit not null,
+	'is_deleted' bit not null,
 	'memo' varchar(255) not null,
 	'money' integer not null,
 	'money_type' bit not null,
