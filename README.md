@@ -6,7 +6,7 @@
 ### CreatBy [문보현](https://github.com/moonpiderman)
 
 ### Create Database
-
+- `mysql 8`
 ```shell
 $ bash /scripts/bash/init-db.sh
 ```
@@ -76,3 +76,4 @@ $ java -jar -Dspring.profiles.active=local build/libs/housekeepingbook-0.0.1-SNA
 
 ### ‼️ 느낀점
 - 최대한 간단히 짜려 노력했습니다.
+- 허나 Docker를 제대로 해내지 못했습니다. DB 생성에서 막힌 것인지, 어플리케이션에서 막힌 것인지 헤매이다가 DB와 어플리케이션 버전이 맞지 않았다는 판단이 세워졌습니다.
