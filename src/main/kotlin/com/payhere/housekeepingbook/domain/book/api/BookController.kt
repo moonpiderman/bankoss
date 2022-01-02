@@ -32,7 +32,7 @@ class BookController(
         return ResponseEntity(BookDto.BookResponse(newBook), HttpStatus.CREATED)
     }
 
-    @PostMapping("/{bookId}/log/")
+    @PostMapping("/createBook/{bookId}/log/")
     fun addLog(
         @PathVariable("bookId") bookId: Long,
         @CurrentUser user: User,
@@ -43,7 +43,7 @@ class BookController(
         return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.CREATED)
     }
 
-    @PutMapping("/{bookId}/{logId}/")
+    @PutMapping("/editLog/{bookId}/{logId}/")
     fun modifyLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
@@ -56,7 +56,7 @@ class BookController(
         return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 
-    @DeleteMapping("/{bookId}/{logId}/")
+    @DeleteMapping("/deleteLog/{bookId}/{logId}/")
     fun deleteLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
@@ -68,7 +68,7 @@ class BookController(
         return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
     }
 
-    @PutMapping("/{bookId}/{logId}/restore/")
+    @PutMapping("/restore/{bookId}/{logId}/")
     fun restoreLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
