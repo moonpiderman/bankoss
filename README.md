@@ -65,3 +65,5 @@ $ java -jar -Dspring.profiles.active=local build/libs/housekeepingbook-0.0.1-SNA
 
 ### 📚 Database Scheme
 ![image](https://user-images.githubusercontent.com/70942197/147306280-9ccd8465-4d50-42c3-829b-1b990ddd20eb.png)
+
+### 🐳 Docker compose를 통한 배포 추가 예정
