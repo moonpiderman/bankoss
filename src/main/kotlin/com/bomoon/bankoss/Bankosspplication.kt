@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class BankossApplication
 
 fun main(args: Array<String>) {
-	runApplication<BankossApplication>(*args)
+    runApplication<BankossApplication>(*args)
 }
