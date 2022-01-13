@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class ExceptionControllerAdvice() {
     private val logger = LoggerFactory.getLogger(this.javaClass.name)
     @ExceptionHandler(value = [DataNotFoundException::class])
-    fun notfound(e: HouseKeepingBookException) =
+    fun notfound(e: BankossException) =
         ResponseEntity(ErrorResponse(e.errorType.code, e.errorType.name, e.detail), HttpStatus.NOT_FOUND)
 
     @ExceptionHandler(value = [InvalidRequestException::class])
-    fun badRequest(e: HouseKeepingBookException) =
+    fun badRequest(e: BankossException) =
         ResponseEntity(ErrorResponse(e.errorType.code, e.errorType.name, e.detail), HttpStatus.BAD_REQUEST)
 
     @ExceptionHandler(value = [NotAllowedException::class])
-    fun notAllowed(e: HouseKeepingBookException) =
+    fun notAllowed(e: BankossException) =
         ResponseEntity(ErrorResponse(e.errorType.code, e.errorType.name, e.detail), HttpStatus.FORBIDDEN)
 
     @ExceptionHandler(value = [ConflictException::class])
-    fun conflict(e: HouseKeepingBookException) =
+    fun conflict(e: BankossException) =
         ResponseEntity(ErrorResponse(e.errorType.code, e.errorType.name, e.detail), HttpStatus.CONFLICT)
 }

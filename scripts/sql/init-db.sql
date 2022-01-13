@@ -1,3 +1,3 @@
-CREATE DATABASE housekeepingbook;
-CREATE USER 'housekeepingbook'@'localhost' IDENTIFIED BY 'housekeepingbook';
-GRANT ALL PRIVILEGES ON housekeepingbook.* TO 'housekeepingbook'@'localhost';
+CREATE DATABASE bankoss;
+CREATE USER 'bankoss'@'localhost' IDENTIFIED BY 'bankoss';
+GRANT ALL PRIVILEGES ON bankoss.* TO 'bankoss'@'localhost';
