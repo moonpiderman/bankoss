@@ -1,8 +1,8 @@
 package com.bomoon.bankoss.global.auth
 
+import com.bomoon.bankoss.global.auth.dto.LoginRequest
+import com.bomoon.bankoss.global.auth.jwt.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.payhere.housekeepingbook.global.auth.dto.LoginRequest
-import com.payhere.housekeepingbook.global.auth.jwt.JwtTokenProvider
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication

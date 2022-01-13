@@ -1,6 +1,6 @@
 package com.bomoon.bankoss.domain.bookLog.dto
 
-import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
+import com.bomoon.bankoss.domain.bookLog.model.BookLog
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 

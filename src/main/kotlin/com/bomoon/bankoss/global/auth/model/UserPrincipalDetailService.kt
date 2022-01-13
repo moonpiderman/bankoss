@@ -1,6 +1,6 @@
 package com.bomoon.bankoss.global.auth.model
 
-import com.payhere.housekeepingbook.domain.user.repository.UserRepository
+import com.bomoon.bankoss.domain.user.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException

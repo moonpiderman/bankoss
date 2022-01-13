@@ -1,14 +1,14 @@
 package com.bomoon.bankoss.domain.bookLog.service
 
-import com.payhere.housekeepingbook.domain.book.model.Book
-import com.payhere.housekeepingbook.domain.book.repository.BookRepository
-import com.payhere.housekeepingbook.domain.book.service.BookService
-import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
-import com.payhere.housekeepingbook.domain.bookLog.exception.AlreadyDeletedLogException
-import com.payhere.housekeepingbook.domain.bookLog.exception.CannotFindBookLogException
-import com.payhere.housekeepingbook.domain.bookLog.exception.DidNotDeleteLogException
-import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
-import com.payhere.housekeepingbook.domain.bookLog.repository.BookLogRepository
+import com.bomoon.bankoss.domain.book.model.Book
+import com.bomoon.bankoss.domain.book.repository.BookRepository
+import com.bomoon.bankoss.domain.book.service.BookService
+import com.bomoon.bankoss.domain.bookLog.dto.BookLogDto
+import com.bomoon.bankoss.domain.bookLog.exception.AlreadyDeletedLogException
+import com.bomoon.bankoss.domain.bookLog.exception.CannotFindBookLogException
+import com.bomoon.bankoss.domain.bookLog.exception.DidNotDeleteLogException
+import com.bomoon.bankoss.domain.bookLog.model.BookLog
+import com.bomoon.bankoss.domain.bookLog.repository.BookLogRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import kotlin.math.abs

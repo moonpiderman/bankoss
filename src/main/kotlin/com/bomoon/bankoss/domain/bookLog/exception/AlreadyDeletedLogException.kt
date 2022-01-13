@@ -1,7 +1,7 @@
 package com.bomoon.bankoss.domain.bookLog.exception
 
-import com.payhere.housekeepingbook.global.exception.ConflictException
-import com.payhere.housekeepingbook.global.exception.ErrorType
+import com.bomoon.bankoss.global.exception.ConflictException
+import com.bomoon.bankoss.global.exception.ErrorType
 
 class AlreadyDeletedLogException(detail: String = "") :
     ConflictException(ErrorType.ALREADY_DELETED, detail)

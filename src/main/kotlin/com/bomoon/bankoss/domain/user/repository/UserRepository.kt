@@ -1,6 +1,6 @@
 package com.bomoon.bankoss.domain.user.repository
 
-import com.payhere.housekeepingbook.domain.user.model.User
+import com.bomoon.bankoss.domain.user.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserRepository : JpaRepository<User, Long?> {

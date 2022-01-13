@@ -1,10 +1,10 @@
 package com.bomoon.bankoss.domain.user.service
 
-import com.payhere.housekeepingbook.domain.user.dto.UserDto
-import com.payhere.housekeepingbook.domain.user.exception.UserAlreadyExistsException
-import com.payhere.housekeepingbook.domain.user.model.User
-import com.payhere.housekeepingbook.domain.user.repository.UserRepository
-import com.payhere.housekeepingbook.global.auth.jwt.JwtTokenProvider
+import com.bomoon.bankoss.domain.user.dto.UserDto
+import com.bomoon.bankoss.domain.user.exception.UserAlreadyExistsException
+import com.bomoon.bankoss.domain.user.model.User
+import com.bomoon.bankoss.domain.user.repository.UserRepository
+import com.bomoon.bankoss.global.auth.jwt.JwtTokenProvider
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 

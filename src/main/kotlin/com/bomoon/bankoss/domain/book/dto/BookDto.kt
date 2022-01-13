@@ -1,7 +1,7 @@
 package com.bomoon.bankoss.domain.book.dto
 
-import com.payhere.housekeepingbook.domain.book.model.Book
-import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
+import com.bomoon.bankoss.domain.book.model.Book
+import com.bomoon.bankoss.domain.bookLog.dto.BookLogDto
 import javax.validation.constraints.NotBlank
 
 class BookDto {

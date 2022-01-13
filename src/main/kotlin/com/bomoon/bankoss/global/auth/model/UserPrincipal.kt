@@ -1,6 +1,6 @@
 package com.bomoon.bankoss.global.auth.model
 
-import com.payhere.housekeepingbook.domain.user.model.User
+import com.bomoon.bankoss.domain.user.model.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

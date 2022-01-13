@@ -1,11 +1,11 @@
 package com.bomoon.bankoss.domain.book.service
 
-import com.payhere.housekeepingbook.domain.book.dto.BookDto
-import com.payhere.housekeepingbook.domain.book.exception.CannotFindBookException
-import com.payhere.housekeepingbook.domain.book.model.Book
-import com.payhere.housekeepingbook.domain.book.repository.BookRepository
-import com.payhere.housekeepingbook.domain.user.model.User
-import com.payhere.housekeepingbook.domain.user.repository.UserRepository
+import com.bomoon.bankoss.domain.book.dto.BookDto
+import com.bomoon.bankoss.domain.book.exception.CannotFindBookException
+import com.bomoon.bankoss.domain.book.model.Book
+import com.bomoon.bankoss.domain.book.repository.BookRepository
+import com.bomoon.bankoss.domain.user.model.User
+import com.bomoon.bankoss.domain.user.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 

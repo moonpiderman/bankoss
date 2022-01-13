@@ -1,8 +1,8 @@
 package com.bomoon.bankoss.global.auth.jwt
 
-import com.payhere.housekeepingbook.domain.user.repository.UserRepository
-import com.payhere.housekeepingbook.global.auth.model.CustomAuthenticationToken
-import com.payhere.housekeepingbook.global.auth.model.UserPrincipal
+import com.bomoon.bankoss.domain.user.repository.UserRepository
+import com.bomoon.bankoss.global.auth.model.CustomAuthenticationToken
+import com.bomoon.bankoss.global.auth.model.UserPrincipal
 import io.jsonwebtoken.*
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value

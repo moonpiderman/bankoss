@@ -1,10 +1,10 @@
 package com.bomoon.bankoss.domain.user.api
 
-import com.payhere.housekeepingbook.domain.user.dto.UserDto
-import com.payhere.housekeepingbook.domain.user.model.User
-import com.payhere.housekeepingbook.domain.user.service.UserService
-import com.payhere.housekeepingbook.global.auth.CurrentUser
-import com.payhere.housekeepingbook.global.auth.jwt.JwtTokenProvider
+import com.bomoon.bankoss.domain.user.dto.UserDto
+import com.bomoon.bankoss.domain.user.model.User
+import com.bomoon.bankoss.domain.user.service.UserService
+import com.bomoon.bankoss.global.auth.CurrentUser
+import com.bomoon.bankoss.global.auth.jwt.JwtTokenProvider
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication

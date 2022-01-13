@@ -1,7 +1,7 @@
 package com.bomoon.bankoss.domain.bookLog.model
 
-import com.payhere.housekeepingbook.domain.book.model.Book
-import com.payhere.housekeepingbook.domain.model.BaseTimeEntity
+import com.bomoon.bankoss.domain.book.model.Book
+import com.bomoon.bankoss.domain.model.BaseTimeEntity
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.FetchType

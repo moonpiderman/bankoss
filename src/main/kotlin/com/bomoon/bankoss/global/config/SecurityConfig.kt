@@ -1,10 +1,10 @@
 package com.bomoon.bankoss.global.config
 
-import com.payhere.housekeepingbook.global.auth.SigninAuthenticationFilter
-import com.payhere.housekeepingbook.global.auth.jwt.JwtAuthenticationEntryPoint
-import com.payhere.housekeepingbook.global.auth.jwt.JwtAuthenticationFilter
-import com.payhere.housekeepingbook.global.auth.jwt.JwtTokenProvider
-import com.payhere.housekeepingbook.global.auth.model.UserPrincipalDetailService
+import com.bomoon.bankoss.global.auth.SigninAuthenticationFilter
+import com.bomoon.bankoss.global.auth.jwt.JwtAuthenticationEntryPoint
+import com.bomoon.bankoss.global.auth.jwt.JwtAuthenticationFilter
+import com.bomoon.bankoss.global.auth.jwt.JwtTokenProvider
+import com.bomoon.bankoss.global.auth.model.UserPrincipalDetailService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod

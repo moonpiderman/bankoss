@@ -1,11 +1,11 @@
 package com.bomoon.bankoss.domain.book.api
 
-import com.payhere.housekeepingbook.domain.book.dto.BookDto
-import com.payhere.housekeepingbook.domain.book.service.BookService
-import com.payhere.housekeepingbook.domain.bookLog.dto.BookLogDto
-import com.payhere.housekeepingbook.domain.bookLog.service.BookLogService
-import com.payhere.housekeepingbook.domain.user.model.User
-import com.payhere.housekeepingbook.global.auth.CurrentUser
+import com.bomoon.bankoss.domain.book.dto.BookDto
+import com.bomoon.bankoss.domain.book.service.BookService
+import com.bomoon.bankoss.domain.bookLog.dto.BookLogDto
+import com.bomoon.bankoss.domain.bookLog.service.BookLogService
+import com.bomoon.bankoss.domain.user.model.User
+import com.bomoon.bankoss.global.auth.CurrentUser
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

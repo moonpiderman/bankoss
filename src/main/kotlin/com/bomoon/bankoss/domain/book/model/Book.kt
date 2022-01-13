@@ -1,8 +1,8 @@
 package com.bomoon.bankoss.domain.book.model
 
-import com.payhere.housekeepingbook.domain.bookLog.model.BookLog
-import com.payhere.housekeepingbook.domain.model.BaseTimeEntity
-import com.payhere.housekeepingbook.domain.user.model.User
+import com.bomoon.bankoss.domain.bookLog.model.BookLog
+import com.bomoon.bankoss.domain.model.BaseTimeEntity
+import com.bomoon.bankoss.domain.user.model.User
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -30,7 +30,7 @@ class Book(
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var logs: MutableList<BookLog> = mutableListOf(),
 
-) : BaseTimeEntity() {
+    ) : BaseTimeEntity() {
     fun addLog(bookLog: BookLog) {
         logs.add(bookLog)
     }
