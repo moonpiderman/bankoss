@@ -4,7 +4,6 @@ import com.bomoon.bankoss.domain.user.dto.UserDto
 import com.bomoon.bankoss.domain.user.model.User
 import com.bomoon.bankoss.domain.user.service.UserService
 import com.bomoon.bankoss.global.auth.CurrentUser
-import com.bomoon.bankoss.global.auth.jwt.JwtTokenProvider
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -22,7 +21,6 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api/user")
 class UserController(
-    private val jwtTokenProvider: JwtTokenProvider,
     private val userService: UserService,
 ) {
     @PostMapping("/signup/")
