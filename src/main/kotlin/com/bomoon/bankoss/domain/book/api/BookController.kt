@@ -7,14 +7,14 @@ import com.bomoon.bankoss.domain.bookLog.service.BookLogService
 import com.bomoon.bankoss.domain.user.model.User
 import com.bomoon.bankoss.global.auth.CurrentUser
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
@@ -24,59 +24,64 @@ class BookController(
     private val bookLogService: BookLogService,
 ) {
     @PostMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     fun createBook(
         @CurrentUser user: User,
         @Valid @RequestBody createRequest: BookDto.CreateRequest
-    ): ResponseEntity<BookDto.BookResponse> {
+    ): BookDto.BookResponse {
         val newBook = bookService.createBook(user, createRequest)
-        return ResponseEntity(BookDto.BookResponse(newBook), HttpStatus.CREATED)
+        return BookDto.BookResponse(newBook)
     }
 
     @PostMapping("/createBook/{bookId}/log/")
+    @ResponseStatus(HttpStatus.CREATED)
     fun addLog(
         @PathVariable("bookId") bookId: Long,
         @CurrentUser user: User,
         @Valid @RequestBody addLogRequest: BookLogDto.AddLogRequest
-    ): ResponseEntity<BookDto.BookResponse> {
+    ): BookDto.BookResponse {
         val thisBook = bookService.getThisBook(bookId)
         bookLogService.addLog(addLogRequest, thisBook)
-        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.CREATED)
+        return BookDto.BookResponse(thisBook)
     }
 
     @PutMapping("/editLog/{bookId}/{logId}/")
+    @ResponseStatus(HttpStatus.OK)
     fun modifyLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
         @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
-    ): ResponseEntity<BookDto.BookResponse> {
+    ): BookDto.BookResponse {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.editLog(modifyLogRequest, thisLog, thisBook)
-        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
+        return BookDto.BookResponse(thisBook)
     }
 
     @DeleteMapping("/deleteLog/{bookId}/{logId}/")
+    @ResponseStatus(HttpStatus.OK)
     fun deleteLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
-    ): ResponseEntity<BookDto.BookResponse> {
+    ): BookDto.BookResponse {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.deleteLog(thisLog, thisBook)
-        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
+        return BookDto.BookResponse(thisBook)
     }
 
     @PutMapping("/restore/{bookId}/{logId}/")
+    @ResponseStatus(HttpStatus.OK)
     fun restoreLog(
         @PathVariable("bookId") bookId: Long,
         @PathVariable("logId") logId: Long,
         @CurrentUser user: User,
-    ): ResponseEntity<BookDto.BookResponse> {
+    ): BookDto.BookResponse {
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         bookLogService.restoreLog(thisLog, thisBook)
-        return ResponseEntity(BookDto.BookResponse(thisBook), HttpStatus.OK)
+        return BookDto.BookResponse(thisBook)
     }
 }

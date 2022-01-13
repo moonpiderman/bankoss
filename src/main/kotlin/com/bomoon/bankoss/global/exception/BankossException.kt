@@ -1,7 +1,7 @@
 package com.bomoon.bankoss.global.exception
 
 abstract class BankossException(val errorType: ErrorType, val detail: String = "") :
-        RuntimeException(errorType.name)
+    RuntimeException(errorType.name)
 
 abstract class InvalidRequestException(errorType: ErrorType, detail: String = "") :
     BankossException(errorType, detail)
