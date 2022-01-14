@@ -2,12 +2,12 @@ version: "3"
 
 services:
     db:
-        container_name: housekeeping-book-db
+        container_name: bankoss-db
         image: mysql:8.0.27
         environment:
-            MYSQL_DATABASE: housekeepingbook
-            MYSQL_USER: housekeepingbook
-            MYSQL_PASSWORD: housekeepingbook
+            MYSQL_DATABASE: bankoss
+            MYSQL_USER: bankoss
+            MYSQL_PASSWORD: bankoss
             MYSQL_ROOT_PASSWORD: mysql
         command:
             - --default-authentication-plugin=mysql_native_password
@@ -28,7 +28,7 @@ services:
         volumes:
             -   ./:/app
         working_dir: /app
-        command: "java -jar -Dspring.profiles.active=local build/libs/housekeepingbook-0.0.1-SNAPSHOT.jar"
+        command: "java -jar -Dspring.profiles.active=local build/libs/bankoss-0.0.1-SNAPSHOT.jar"
         depends_on:
             -   db
         restart: always
