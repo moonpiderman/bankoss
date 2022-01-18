@@ -20,7 +20,7 @@ services:
     app:
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: Dockerfile
         container_name: housekeeping-book-app
         image: openjdk:11-jdk
         ports:
