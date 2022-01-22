@@ -2,7 +2,6 @@ package com.bomoon.bankoss.domain.bookLog.model
 
 import com.bomoon.bankoss.domain.book.model.Book
 import com.bomoon.bankoss.domain.model.BaseTimeEntity
-import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToOne
@@ -13,7 +12,7 @@ import javax.validation.constraints.NotNull
 @Entity
 @Table(name = "book_log")
 class BookLog(
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = true)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [], optional = true)
     var book: Book? = null,
 
     @field:NotBlank

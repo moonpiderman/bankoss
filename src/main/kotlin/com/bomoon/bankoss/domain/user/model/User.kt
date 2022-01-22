@@ -27,7 +27,7 @@ class User(
     @field:NotBlank
     var accessToken: String,
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = [CascadeType.REMOVE])
     var books: MutableList<Book> = mutableListOf(),
 ) : BaseTimeEntity() {
     fun addBook(book: Book) {
