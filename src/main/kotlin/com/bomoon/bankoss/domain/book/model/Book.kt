@@ -27,7 +27,7 @@ class Book(
     @Column
     var balance: Int = 0,
 
-    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = [CascadeType.REMOVE])
     var logs: MutableList<BookLog> = mutableListOf(),
 
 ) : BaseTimeEntity() {
