@@ -1,5 +1,6 @@
 package com.bomoon.bankoss.domain.bookLog.service
 
+import com.bomoon.bankoss.domain.book.dto.BookDto
 import com.bomoon.bankoss.domain.book.model.Book
 import com.bomoon.bankoss.domain.book.repository.BookRepository
 import com.bomoon.bankoss.domain.book.service.BookService
@@ -19,7 +20,7 @@ class BookLogService(
     private val bookRepository: BookRepository,
     private val bookService: BookService,
 ) {
-    fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book) {
+    fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book): BookDto.BookResponse {
         if (book != null) {
             val category = addLogRequest.category
             val moneyType = addLogRequest.moneyType
@@ -36,6 +37,7 @@ class BookLogService(
             book.balance = bookService.calculateBalance(book.balance, moneyType, money)
             bookRepository.save(book)
         }
+        return BookDto.BookResponse(book)
     }
 
     fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book) {

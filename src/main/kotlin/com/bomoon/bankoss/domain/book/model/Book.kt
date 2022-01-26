@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank
 @Entity
 @Table(name = "book")
 class Book(
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [])
     var user: User? = null,
 
     @field:NotBlank
