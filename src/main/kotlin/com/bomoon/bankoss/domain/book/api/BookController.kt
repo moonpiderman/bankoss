@@ -33,18 +33,6 @@ class BookController(
         return BookDto.BookResponse(newBook)
     }
 
-    @PostMapping("/createBook/{bookId}/log/")
-    @ResponseStatus(HttpStatus.CREATED)
-    fun addLog(
-        @PathVariable("bookId") bookId: Long,
-        @CurrentUser user: User,
-        @Valid @RequestBody addLogRequest: BookLogDto.AddLogRequest
-    ): BookDto.BookResponse {
-        val thisBook = bookService.getThisBook(bookId)
-        bookLogService.addLog(addLogRequest, thisBook)
-        return BookDto.BookResponse(thisBook)
-    }
-
     @PutMapping("/editLog/{bookId}/{logId}/")
     @ResponseStatus(HttpStatus.OK)
     fun modifyLog(
