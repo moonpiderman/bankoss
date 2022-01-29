@@ -23,7 +23,7 @@ class BookController(
     private val bookLogService: BookLogService,
 ) {
     @PostMapping("/")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     fun createBook(
         @CurrentUser user: User,
         @Valid @RequestBody createRequest: BookDto.CreateRequest
