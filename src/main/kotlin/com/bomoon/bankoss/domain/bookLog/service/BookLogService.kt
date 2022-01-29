@@ -39,7 +39,7 @@ class BookLogService(
         return BookDto.BookResponse(book)
     }
 
-    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book) {
+    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book): BookDto.BookResponse {
         var type: Boolean = log.moneyType
         var moneyForBal: Int = log.money
         if (modifyLogRequest.category != null) log.category = modifyLogRequest.category
@@ -57,6 +57,8 @@ class BookLogService(
         val newBalance = bookService.calculateBalance(book.balance, type, abs(moneyForBal))
         book.balance = newBalance
         bookLogRepository.save(log)
+
+        return BookDto.BookResponse(book)
     }
 
     fun deleteLog(log: BookLog, book: Book) {

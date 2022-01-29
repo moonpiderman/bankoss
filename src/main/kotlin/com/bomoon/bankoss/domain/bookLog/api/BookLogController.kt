@@ -9,6 +9,7 @@ import com.bomoon.bankoss.global.auth.CurrentUser
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -30,5 +31,18 @@ class BookLogController(
     ): BookDto.BookResponse {
         val thisBook = bookService.getThisBook(bookId)
         return bookLogService.addLog(addLogRequest, thisBook)
+    }
+
+    @PutMapping("/edit_log/book/{book_id}/log/{log_id}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun editLog(
+        @PathVariable("book_id") bookId: Long,
+        @PathVariable("log_id") logId: Long,
+        @CurrentUser user: User,
+        @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
+    ): BookDto.BookResponse {
+        val thisBook = bookService.getThisBook(bookId)
+        val thisLog = bookLogService.getThisLog(logId)
+        return bookLogService.editLog(modifyLogRequest, thisLog, thisBook)
     }
 }
