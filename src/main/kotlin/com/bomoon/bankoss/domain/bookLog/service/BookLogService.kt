@@ -21,26 +21,25 @@ class BookLogService(
     private val bookService: BookService,
 ) {
     fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book): BookDto.BookResponse {
-        if (book != null) {
-            val category = addLogRequest.category
-            val moneyType = addLogRequest.moneyType
-            val money = addLogRequest.money
-            val memo = addLogRequest.memo
+        val category = addLogRequest.category
+        val moneyType = addLogRequest.moneyType
+        val money = addLogRequest.money
+        val memo = addLogRequest.memo
 
-            val newLog = bookLogRepository.save(
-                BookLog(
-                    category = category, moneyType = moneyType, money = money, memo = memo
-                )
+        val newLog = bookLogRepository.save(
+            BookLog(
+                category = category, moneyType = moneyType, money = money, memo = memo
             )
-            book.addLog(newLog)
-            newLog.book = book
-            book.balance = bookService.calculateBalance(book.balance, moneyType, money)
-            bookRepository.save(book)
-        }
+        )
+        book.addLog(newLog)
+        newLog.book = book
+        book.balance = bookService.calculateBalance(book.balance, moneyType, money)
+        bookRepository.save(book)
+
         return BookDto.BookResponse(book)
     }
 
-    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book) {
+    fun editLog(modifyLogRequest: BookLogDto.ModifyLogRequest, log: BookLog, book: Book): BookDto.BookResponse {
         var type: Boolean = log.moneyType
         var moneyForBal: Int = log.money
         if (modifyLogRequest.category != null) log.category = modifyLogRequest.category
@@ -58,6 +57,8 @@ class BookLogService(
         val newBalance = bookService.calculateBalance(book.balance, type, abs(moneyForBal))
         book.balance = newBalance
         bookLogRepository.save(log)
+
+        return BookDto.BookResponse(book)
     }
 
     fun deleteLog(log: BookLog, book: Book) {

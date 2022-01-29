@@ -2,7 +2,6 @@ package com.bomoon.bankoss.domain.book.api
 
 import com.bomoon.bankoss.domain.book.dto.BookDto
 import com.bomoon.bankoss.domain.book.service.BookService
-import com.bomoon.bankoss.domain.bookLog.dto.BookLogDto
 import com.bomoon.bankoss.domain.bookLog.service.BookLogService
 import com.bomoon.bankoss.domain.user.model.User
 import com.bomoon.bankoss.global.auth.CurrentUser
@@ -31,20 +30,6 @@ class BookController(
     ): BookDto.BookResponse {
         val newBook = bookService.createBook(user, createRequest)
         return BookDto.BookResponse(newBook)
-    }
-
-    @PutMapping("/editLog/{bookId}/{logId}/")
-    @ResponseStatus(HttpStatus.OK)
-    fun modifyLog(
-        @PathVariable("bookId") bookId: Long,
-        @PathVariable("logId") logId: Long,
-        @CurrentUser user: User,
-        @Valid @RequestBody modifyLogRequest: BookLogDto.ModifyLogRequest
-    ): BookDto.BookResponse {
-        val thisBook = bookService.getThisBook(bookId)
-        val thisLog = bookLogService.getThisLog(logId)
-        bookLogService.editLog(modifyLogRequest, thisLog, thisBook)
-        return BookDto.BookResponse(thisBook)
     }
 
     @DeleteMapping("/deleteLog/{bookId}/{logId}/")
