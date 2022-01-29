@@ -21,22 +21,21 @@ class BookLogService(
     private val bookService: BookService,
 ) {
     fun addLog(addLogRequest: BookLogDto.AddLogRequest, book: Book): BookDto.BookResponse {
-        if (book != null) {
-            val category = addLogRequest.category
-            val moneyType = addLogRequest.moneyType
-            val money = addLogRequest.money
-            val memo = addLogRequest.memo
+        val category = addLogRequest.category
+        val moneyType = addLogRequest.moneyType
+        val money = addLogRequest.money
+        val memo = addLogRequest.memo
 
-            val newLog = bookLogRepository.save(
-                BookLog(
-                    category = category, moneyType = moneyType, money = money, memo = memo
-                )
+        val newLog = bookLogRepository.save(
+            BookLog(
+                category = category, moneyType = moneyType, money = money, memo = memo
             )
-            book.addLog(newLog)
-            newLog.book = book
-            book.balance = bookService.calculateBalance(book.balance, moneyType, money)
-            bookRepository.save(book)
-        }
+        )
+        book.addLog(newLog)
+        newLog.book = book
+        book.balance = bookService.calculateBalance(book.balance, moneyType, money)
+        bookRepository.save(book)
+
         return BookDto.BookResponse(book)
     }
 
