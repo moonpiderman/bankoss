@@ -58,4 +58,16 @@ class BookLogController(
         val thisLog = bookLogService.getThisLog(logId)
         return bookLogService.deleteLog(thisLog, thisBook)
     }
+
+    @PutMapping("/restore/book/{book_id}/log/{log_id/")
+    @ResponseStatus(HttpStatus.OK)
+    fun restoreLog(
+        @PathVariable("book_id") bookId: Long,
+        @PathVariable("log_id") logId: Long,
+        @CurrentUser user: User,
+    ): BookDto.BookResponse {
+        val thisBook = bookService.getThisBook(bookId)
+        val thisLog = bookLogService.getThisLog(logId)
+        return bookLogService.restoreLog(thisLog, thisBook)
+    }
 }

@@ -72,13 +72,15 @@ class BookLogService(
         return BookDto.BookResponse(book)
     }
 
-    fun restoreLog(log: BookLog, book: Book) {
+    fun restoreLog(log: BookLog, book: Book): BookDto.BookResponse {
         if (log.isDeleted) throw DidNotDeleteLogException()
         log.isDeleted = true
 
         val newBalance = bookService.calculateBalance(book.balance, log.moneyType, log.money)
         book.balance = newBalance
         bookLogRepository.save(log)
+
+        return BookDto.BookResponse(book)
     }
 
     fun getThisLog(id: Long): BookLog {
