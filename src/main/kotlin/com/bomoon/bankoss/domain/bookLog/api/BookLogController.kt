@@ -7,6 +7,7 @@ import com.bomoon.bankoss.domain.bookLog.service.BookLogService
 import com.bomoon.bankoss.domain.user.model.User
 import com.bomoon.bankoss.global.auth.CurrentUser
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -44,5 +45,17 @@ class BookLogController(
         val thisBook = bookService.getThisBook(bookId)
         val thisLog = bookLogService.getThisLog(logId)
         return bookLogService.editLog(modifyLogRequest, thisLog, thisBook)
+    }
+
+    @DeleteMapping("/delete_log/book/{book_id}/log/{log_id}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteLog(
+        @PathVariable("book_id") bookId: Long,
+        @PathVariable("log_id") logId: Long,
+        @CurrentUser user: User,
+    ): BookDto.BookResponse {
+        val thisBook = bookService.getThisBook(bookId)
+        val thisLog = bookLogService.getThisLog(logId)
+        return bookLogService.deleteLog(thisLog, thisBook)
     }
 }

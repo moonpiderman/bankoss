@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping
 import javax.validation.Valid
@@ -30,19 +29,6 @@ class BookController(
     ): BookDto.BookResponse {
         val newBook = bookService.createBook(user, createRequest)
         return BookDto.BookResponse(newBook)
-    }
-
-    @DeleteMapping("/deleteLog/{bookId}/{logId}/")
-    @ResponseStatus(HttpStatus.OK)
-    fun deleteLog(
-        @PathVariable("bookId") bookId: Long,
-        @PathVariable("logId") logId: Long,
-        @CurrentUser user: User,
-    ): BookDto.BookResponse {
-        val thisBook = bookService.getThisBook(bookId)
-        val thisLog = bookLogService.getThisLog(logId)
-        bookLogService.deleteLog(thisLog, thisBook)
-        return BookDto.BookResponse(thisBook)
     }
 
     @PutMapping("/restore/{bookId}/{logId}/")
