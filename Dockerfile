@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . /app
 RUN ./gradlew bootJar
 EXPOSE 8080
-CMD java -jar -Dspring.porifles.active=local /app/build/libs/bankos-0.0.1-SNAPSHOT.jar
+CMD java -jar -Dspring.porifles.active=local /app/build/libs/bankoss-0.0.1-SNAPSHOT.jar
