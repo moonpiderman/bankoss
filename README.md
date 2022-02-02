@@ -1,4 +1,4 @@
-## 💸 HouseKeeping Book 가계부 API Server
+## 💸 Bankoss 가계부 API Server
 
 
 ### Tech Stack
