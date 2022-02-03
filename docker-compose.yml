@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_USER: bankoss
+      MYSQL_DATABASE: bankoss
+      MYSQL_PASSWORD: bankoss
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - "./database/:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+
+  bankoss-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/bankoss
+      SPRING_DATASOURCE_USERNAME: bankoss
+      SPRING_DATASOURCE_PASSWORD: bankoss
