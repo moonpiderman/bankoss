@@ -14,15 +14,16 @@ class BookService(
     private val bookRepository: BookRepository,
     private val userRepository: UserRepository,
 ) {
-    fun createBook(user: User, createRequest: BookDto.CreateRequest): Book {
+    fun createBook(user: User, createRequest: BookDto.CreateRequest): BookDto.BookResponse {
         val title = createRequest.title
+        val type = createRequest.type
         val memo = createRequest.memo
 
-        val newBook = bookRepository.save(Book(title = title, memo = memo))
+        val newBook = bookRepository.save(Book(title = title, type = type, memo = memo))
         user.addBook(newBook)
         newBook.user = user
         userRepository.save(user)
-        return newBook
+        return BookDto.BookResponse(newBook)
     }
 
     fun calculateBalance(bookBalance: Int, moneyType: Boolean, money: Int): Int {

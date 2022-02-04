@@ -25,7 +25,6 @@ class BookController(
         @CurrentUser user: User,
         @Valid @RequestBody createRequest: BookDto.CreateRequest
     ): BookDto.BookResponse {
-        val newBook = bookService.createBook(user, createRequest)
-        return BookDto.BookResponse(newBook)
+        return bookService.createBook(user, createRequest)
     }
 }

@@ -8,6 +8,7 @@ class BookDto {
     data class BookResponse(
         val id: Long,
         val title: String,
+        val type: String,
         val memo: String,
         val balance: Int,
         val logs: List<BookLogDto.LogResponse>,
@@ -15,6 +16,7 @@ class BookDto {
         constructor(book: Book) : this(
             id = book.id,
             title = book.title,
+            type = book.type,
             memo = book.memo,
             balance = book.balance,
             logs = book.logs.map {
@@ -40,6 +42,9 @@ class BookDto {
     data class CreateRequest(
         @field:NotBlank
         val title: String,
+
+        @field:NotBlank
+        val type: String,
 
         @field:NotBlank
         val memo: String = "",
