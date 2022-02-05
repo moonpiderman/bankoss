@@ -20,7 +20,6 @@ class BookService(
         val memo = createRequest.memo
 
         val newBook = bookRepository.save(Book(title = title, type = type, memo = memo))
-        user.addBook(newBook)
         newBook.user = user
         userRepository.save(user)
         return BookDto.BookResponse(newBook)

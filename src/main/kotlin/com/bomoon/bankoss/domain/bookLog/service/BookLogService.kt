@@ -31,7 +31,6 @@ class BookLogService(
                 category = category, moneyType = moneyType, money = money, memo = memo
             )
         )
-        book.addLog(newLog)
         newLog.book = book
         book.balance = bookService.calculateBalance(book.balance, moneyType, money)
         bookRepository.save(book)
