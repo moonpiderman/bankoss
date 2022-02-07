@@ -59,7 +59,7 @@ class BookLogController(
         return bookLogService.deleteLog(thisLog, thisBook)
     }
 
-    @PutMapping("/restore/book/{book_id}/log/{log_id/")
+    @PutMapping("/restore/book/{book_id}/log/{log_id}/")
     @ResponseStatus(HttpStatus.OK)
     fun restoreLog(
         @PathVariable("book_id") bookId: Long,
